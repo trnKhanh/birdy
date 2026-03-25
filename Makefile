@@ -21,11 +21,11 @@ info:
 
 .PHONY: install
 install: dependencies
-	pip install -eq .
+	pip install -e .
 
 .PHONY: install-dev
 install-dev: dependencies
-	pip install -eq .[dev]
+	pip install -e ".[dev]"
 
 .PHONY: dependencies
 dependencies:
@@ -39,3 +39,7 @@ data-birdclef2026: dependencies
 	7z x $(ARCHIVE_DIR)$(SEP)birdclef-2026.zip -y -o$(BIRDCLEF2026_DATA_DIR) \
 	|| tar -xf $(ARCHIVE_DIR)$(SEP)birdclef-2026.zip -C $(BIRDCLEF2026_DATA_DIR) 
 	rm -f $(ARCHIVE_DIR)$(SEP)birdclef-2026.zip
+
+.PHONY: test
+test:
+	pytest tests/**.py

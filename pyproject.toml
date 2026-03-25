@@ -13,12 +13,15 @@ requires-python = ">=3.12"
 dependencies = [
     "torch",
     "torchvision",
+    "torchaudio",
+    "torchcodec",
     "numpy<2",
     "pillow",
     "tqdm",
     "scikit-learn",
     "pandas",
     "opencv-contrib-python",
+    "timm",
 ]
 
 [project.optional-dependencies]
@@ -33,6 +36,7 @@ dev = [
     "matplotlib",
     "plotly",
     "ruff",
+    "pytest",
 ]
 
 [project.scripts]
@@ -46,3 +50,19 @@ namespaces = false
 
 [tool.ruff]
 line-length = 100
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["N812", "S101"]
+unfixable = ["F401"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+ignore-var-parameters = true
+
+[tool.ruff.lint.flake8-annotations]
+allow-star-arg-any = true
+
+[tool.ruff.format]
+docstring-code-format = true
